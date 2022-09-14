@@ -1,11 +1,7 @@
-# TopicMap für [ ____ ____ ____ ____ ] in Wuppertal
+# TopicMap Online-Stadtplan in Wuppertal
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/topicmaps-wuppertal/projektname)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/topicmaps-wuppertal/stadtplan)
 
-## Ein einfaches Beispiel für eine TopicMap
+## Screenshot
 
-<img width="1549" alt="Screenshot 2021-02-19 at 08 40 49" src="https://user-images.githubusercontent.com/837211/108474812-2b2a9480-7290-11eb-967a-b174a73e9707.png">
-
-## Datengrundlage
-
-Hier stehen kurze Infos zur Datengrundlage
+<img width="1549" alt="Screenshot" src="https://user-images.githubusercontent.com/837211/190119383-6733ef41-fd28-4d12-8c5b-95fbde459216.png">
