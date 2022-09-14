@@ -20,7 +20,7 @@ const convertItemToFeature = async (itemIn) => {
     header: (item?.mainlocationtype?.lebenslagen || []).join(", "),
     title: item.name,
     additionalInfo: item.info,
-    subtitle: <span>{item?.adresse}</span>,
+    subtitle: item?.adresse,
   };
   item.info = info;
   item.color = headerColor;
