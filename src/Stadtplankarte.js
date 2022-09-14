@@ -69,7 +69,7 @@ const Stadtplankarte = ({ poiColors }) => {
               <span>
                 Für mehr POI Ansicht mit verkleinern. Um nach Themenfeldern zu filtern, das Menü
                 öffnen.
-              </spanStyledWMSTileLayer_symbolColor>
+              </span>
             ),
           }}
           photoUrlManipulation={fotoKraemerUrlManipulation}
