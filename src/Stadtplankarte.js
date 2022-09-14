@@ -51,6 +51,12 @@ const Stadtplankarte = ({ poiColors }) => {
       modalMenu={<Menu />}
       locatorControl={true}
       gazetteerSearchPlaceholder='Stadtteil | Adresse | POI'
+      gazetteerHitTrigger={(hits) => {
+        if ((Array.isArray(hits) && hits[0]?.more?.pid) || hits[0]?.more?.kid) {
+          const gazId = hits[0]?.more?.pid || hits[0]?.more?.kid;
+          setSelectedFeatureByPredicate((feature) => feature.properties.id === gazId);
+        }
+      }}
       applicationMenuTooltipString='Themenstadtplan | Einstellungen | Kompaktanleitung'
       infoBox={
         <GenericInfoBoxFromFeature
