@@ -22,6 +22,7 @@ import {
   setAllLebenslagenToFilter,
   toggleFilter,
 } from "./helper/filter";
+import { TopicMapStylingContext } from "react-cismap/contexts/TopicMapStylingContextProvider";
 ReactChartkick.addAdapter(Chart);
 
 const FilterUI = ({ apps = crossLinkApps }) => {
@@ -31,9 +32,9 @@ const FilterUI = ({ apps = crossLinkApps }) => {
   const lebenslagen = useMemo(() => itemsDictionary?.lebenslagen || [], [itemsDictionary]);
   const { windowSize } = useContext(ResponsiveTopicMapContext);
   const [filterRows, setFilterRows] = useState();
+  const { additionalStylingInfo } = useContext(TopicMapStylingContext);
+  const poiColors = additionalStylingInfo?.poiColors;
   useEffect(() => {
-    console.log("setFilterRows", { apps, lebenslagen });
-
     setFilterRows(createFilterRows(apps, lebenslagen, toggleFilter, filterState, setFilterState));
   }, [apps, lebenslagen, setFilterState, filterState]);
 
@@ -49,22 +50,28 @@ const FilterUI = ({ apps = crossLinkApps }) => {
   let colormodel = {};
   for (let poi of filteredPOIs) {
     if (stats[poi.mainlocationtype.lebenslagen.join(", ")] === undefined) {
-      const key = poi.mainlocationtype.lebenslagen.join(", ");
+      const ll = poi.mainlocationtype.lebenslagen;
+
+      const key = ll
+        .slice()
+        .sort(function (a, b) {
+          return a.localeCompare(b);
+        })
+        .join(", ");
       stats[key] = 1;
-      colormodel[key] = getColorFromLebenslagenCombination(key);
+      colormodel[key] = getColorFromLebenslagenCombination(key, poiColors);
     } else {
       stats[poi.mainlocationtype.lebenslagen.join(", ")] =
         stats[poi.mainlocationtype.lebenslagen.join(", ")] + 1;
     }
   }
 
-  //console.log(JSON.stringify(colormodel, null, 2));
   let piechartData = [];
   let piechartColor = [];
 
   for (let key in stats) {
     piechartData.push([key, stats[key]]);
-    piechartColor.push(getColorFromLebenslagenCombination(key));
+    piechartColor.push(getColorFromLebenslagenCombination(key, poiColors));
   }
 
   let pieChart = (
