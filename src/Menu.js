@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import Icon from "react-cismap/commons/Icon";
 import CustomizationContextProvider from "react-cismap/contexts/CustomizationContextProvider";
-import {
-  FeatureCollectionContext,
-  FeatureCollectionDispatchContext,
-} from "react-cismap/contexts/FeatureCollectionContextProvider";
+import { FeatureCollectionContext, FeatureCollectionDispatchContext } from "react-cismap/contexts/FeatureCollectionContextProvider";
 import { UIDispatchContext } from "react-cismap/contexts/UIContextProvider";
 import { addSVGToProps } from "react-cismap/tools/svgHelper";
 import { getSimpleHelpForTM } from "react-cismap/tools/uiHelper";
@@ -105,7 +102,6 @@ const Menu = () => {
   );
 
   const { items } = useContext(FeatureCollectionContext);
-  console.log("xxx itemsDictionary ", itemsDictionary);
 
   if ((filterState === undefined) & (items !== undefined)) {
     setFilterState(getDefaultFilterConfiguration(itemsDictionary.lebenslagen));
