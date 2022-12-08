@@ -1,9 +1,10 @@
-import queryString from "query-string";
-import ColorHash from "color-hash";
 import Color from "color";
-import createElement from "svg-create-element";
+import ColorHash from "color-hash";
 import createSVGPie from "create-svg-pie";
 import L from "leaflet";
+import queryString from "query-string";
+import createElement from "svg-create-element";
+
 import { POI_COLORS } from "./constants";
 
 const fallbackSVG = `
@@ -129,7 +130,9 @@ export const getPoiClusterIconCreatorFunction = ({
 
     var divIcon = L.divIcon({
       className: "leaflet-data-marker",
-      html: background.outerHTML || new XMLSerializer().serializeToString(background), //IE11 Compatibility
+      html:
+        background.outerHTML ||
+        new XMLSerializer().serializeToString(background), //IE11 Compatibility
       iconAnchor: [canvasSize / 2.0, canvasSize / 2.0],
       iconSize: [canvasSize, canvasSize],
     });
@@ -137,7 +140,10 @@ export const getPoiClusterIconCreatorFunction = ({
   };
 };
 
-export const getColorFromLebenslagenCombination = (combination, poiColors = POI_COLORS) => {
+export const getColorFromLebenslagenCombination = (
+  combination,
+  poiColors = POI_COLORS
+) => {
   let qColorRules;
   let colorCandidate;
   let lookup = null;
@@ -213,7 +219,9 @@ export const getFeatureStyler = (
     let selectionBox = canvasSize - 6;
     let badge = feature.properties.svgBadge || fallbackSVG; //|| `<image x="${(svgSize - 20) / 2}" y="${(svgSize - 20) / 2}" width="20" height="20" xlink:href="/pois/signaturen/`+getSignatur(feature.properties)+`" />`;
 
-    let svg = `<svg id="badgefor_${feature.id}" height="${canvasSize}" width="${canvasSize}"> 
+    let svg = `<svg id="badgefor_${
+      feature.id
+    }" height="${canvasSize}" width="${canvasSize}"> 
                     <style>
                     /* <![CDATA[ */
                         #badgefor_${feature.id} .bg-fill  {
@@ -246,7 +254,9 @@ export const getFeatureStyler = (
       let innerBadgeOffset = (selectionBox - badgeDimension) / 2;
 
       svg =
-        `<svg id="badgefor_${feature.id}" height="${canvasSize}" width="${canvasSize}">
+        `<svg id="badgefor_${
+          feature.id
+        }" height="${canvasSize}" width="${canvasSize}">
                     <style>
                     /* <![CDATA[ */
                         #badgefor_${feature.id} .bg-fill  {

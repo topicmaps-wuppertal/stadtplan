@@ -1,28 +1,21 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Badge, Button, Form } from "react-bootstrap";
-
-import "url-search-params-polyfill";
-import { getColorFromLebenslagenCombination } from "./helper/styler";
-
-import MultiToggleButton from "./MultiToggleButton";
-import Chart from "chart.js";
-import ReactChartkick, { PieChart } from "react-chartkick";
-import { useContext } from "react";
-import {
-  FeatureCollectionContext,
-  FeatureCollectionDispatchContext,
-} from "react-cismap/contexts/FeatureCollectionContextProvider";
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Chart from "chart.js";
+import React, { useEffect, useMemo, useState } from "react";
+import { useContext } from "react";
+import { Badge, Button, Form } from "react-bootstrap";
+import ReactChartkick, { PieChart } from "react-chartkick";
+import { FeatureCollectionContext, FeatureCollectionDispatchContext } from "react-cismap/contexts/FeatureCollectionContextProvider";
 import { ResponsiveTopicMapContext } from "react-cismap/contexts/ResponsiveTopicMapContextProvider";
-import { crossLinkApps } from "./helper/constants";
-import {
-  clearFilter,
-  createFilterRows,
-  setAllLebenslagenToFilter,
-  toggleFilter,
-} from "./helper/filter";
 import { TopicMapStylingContext } from "react-cismap/contexts/TopicMapStylingContextProvider";
+
+import { crossLinkApps } from "./helper/constants";
+import { clearFilter, createFilterRows, setAllLebenslagenToFilter, toggleFilter } from "./helper/filter";
+import { getColorFromLebenslagenCombination } from "./helper/styler";
+import MultiToggleButton from "./MultiToggleButton";
+
+import "url-search-params-polyfill";
+
 ReactChartkick.addAdapter(Chart);
 
 const FilterUI = ({ apps = crossLinkApps }) => {

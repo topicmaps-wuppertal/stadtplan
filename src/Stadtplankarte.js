@@ -4,12 +4,15 @@ import {
   FeatureCollectionContext,
   FeatureCollectionDispatchContext,
 } from "react-cismap/contexts/FeatureCollectionContextProvider";
+import { LightBoxContext } from "react-cismap/contexts/LightBoxContextProvider";
 import {
   TopicMapStylingContext,
   TopicMapStylingDispatchContext,
 } from "react-cismap/contexts/TopicMapStylingContextProvider";
 import FeatureCollection from "react-cismap/FeatureCollection";
+import GenericInfoBoxFromFeature from "react-cismap/topicmaps/GenericInfoBoxFromFeature";
 import TopicMapComponent from "react-cismap/topicmaps/TopicMapComponent";
+
 import {
   fotoKraemerCaptionFactory,
   fotoKraemerUrlManipulation,
@@ -17,8 +20,6 @@ import {
   getPOIColors,
 } from "./helper/helper";
 import { getPoiClusterIconCreatorFunction } from "./helper/styler";
-import GenericInfoBoxFromFeature from "react-cismap/topicmaps/GenericInfoBoxFromFeature";
-import { LightBoxContext } from "react-cismap/contexts/LightBoxContextProvider";
 import Menu from "./Menu";
 
 const Stadtplankarte = ({ poiColors }) => {
@@ -28,7 +29,9 @@ const Stadtplankarte = ({ poiColors }) => {
   );
   const lightBoxContext = useContext(LightBoxContext);
   const { markerSymbolSize } = useContext(TopicMapStylingContext);
-  const { clusteringOptions, selectedFeature } = useContext(FeatureCollectionContext);
+  const { clusteringOptions, selectedFeature } = useContext(
+    FeatureCollectionContext
+  );
   useEffect(() => {
     getGazData(setGazData);
   }, []);
@@ -50,14 +53,16 @@ const Stadtplankarte = ({ poiColors }) => {
       gazData={gazData}
       modalMenu={<Menu />}
       locatorControl={true}
-      gazetteerSearchPlaceholder='Stadtteil | Adresse | POI'
+      gazetteerSearchPlaceholder="Stadtteil | Adresse | POI"
       gazetteerHitTrigger={(hits) => {
         if ((Array.isArray(hits) && hits[0]?.more?.pid) || hits[0]?.more?.kid) {
           const gazId = hits[0]?.more?.pid || hits[0]?.more?.kid;
-          setSelectedFeatureByPredicate((feature) => feature.properties.id === gazId);
+          setSelectedFeatureByPredicate(
+            (feature) => feature.properties.id === gazId
+          );
         }
       }}
-      applicationMenuTooltipString='Themenstadtplan | Einstellungen | Kompaktanleitung'
+      applicationMenuTooltipString="Themenstadtplan | Einstellungen | Kompaktanleitung"
       infoBox={
         <GenericInfoBoxFromFeature
           pixelwidth={350}
@@ -73,8 +78,8 @@ const Stadtplankarte = ({ poiColors }) => {
             noCurrentFeatureTitle: "Keine POIs gefunden",
             noCurrentFeatureContent: (
               <span>
-                Für mehr POI Ansicht mit verkleinern. Um nach Themenfeldern zu filtern, das Menü
-                öffnen.
+                Für mehr POI Ansicht mit verkleinern. Um nach Themenfeldern zu
+                filtern, das Menü öffnen.
               </span>
             ),
           }}

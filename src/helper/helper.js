@@ -1,7 +1,12 @@
 import React from "react";
 import IconComp from "react-cismap/commons/Icon";
-import { fetchJSON, md5FetchJSON, md5FetchText } from "react-cismap/tools/fetching";
+import {
+  fetchJSON,
+  md5FetchJSON,
+  md5FetchText,
+} from "react-cismap/tools/fetching";
 import { getGazDataForTopicIds } from "react-cismap/tools/gazetteerHelper";
+
 import { host } from "./constants";
 
 export const getGazData = async (setGazData) => {
@@ -46,7 +51,7 @@ export const fotoKraemerUrlManipulation = (input) => {
 };
 
 export const fotoKraemerCaptionFactory = (linkUrl) => (
-  <a href={linkUrl} target='_fotos'>
-    <IconComp name='copyright' /> Peter Kr&auml;mer - Fotografie
+  <a href={linkUrl} target="_fotos">
+    <IconComp name="copyright" /> Peter Kr&auml;mer - Fotografie
   </a>
 );

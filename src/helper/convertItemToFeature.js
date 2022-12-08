@@ -1,7 +1,9 @@
+import Color from "color";
 import React from "react";
 import { addSVGToProps } from "react-cismap/tools/svgHelper";
+
 import { getColorForProperties } from "./styler";
-import Color from "color";
+
 const getSignature = (properties) => {
   if (properties.signatur) {
     return properties.signatur;
@@ -11,11 +13,11 @@ const getSignature = (properties) => {
   return "Platz.svg"; //TODO sinnvoller default
 };
 
-const convertItemToFeature = async (itemIn) => {
+const convertItemToFeature = async (itemIn, poiColors) => {
   let clonedItem = JSON.parse(JSON.stringify(itemIn));
 
   let item = await addSVGToProps(clonedItem, (i) => getSignature(i));
-  const headerColor = Color(getColorForProperties(item));
+  const headerColor = Color(getColorForProperties(item, poiColors));
   const info = {
     header: (item?.mainlocationtype?.lebenslagen || []).join(", "),
     title: item.name,
@@ -47,3 +49,9 @@ const convertItemToFeature = async (itemIn) => {
 };
 
 export default convertItemToFeature;
+
+export const getConvertItemToFeatureWithPOIColors = (poiColors) => {
+  return async (itemIn) => {
+    return await convertItemToFeature(itemIn, poiColors);
+  };
+};

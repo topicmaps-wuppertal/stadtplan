@@ -1,4 +1,5 @@
 import React from "react";
+
 import MultiToggleButton from "../MultiToggleButton";
 
 const itemFilterFunction = ({ filterState, filterMode }) => {
@@ -22,7 +23,13 @@ const itemFilterFunction = ({ filterState, filterMode }) => {
 };
 export default itemFilterFunction;
 
-export const createFilterRows = (apps, lebenslagen, toggleFilter, filterState, setFilterState) => {
+export const createFilterRows = (
+  apps,
+  lebenslagen,
+  toggleFilter,
+  filterState,
+  setFilterState
+) => {
   let appsMap = new Map();
 
   let llOptions = [];
@@ -124,7 +131,12 @@ export const clearFilter = (kind, filterState, setFilterState) => {
   return newFilterState;
 };
 
-export const setAllLebenslagenToFilter = (kind, lebenslagen, filterState, setFilterState) => {
+export const setAllLebenslagenToFilter = (
+  kind,
+  lebenslagen,
+  filterState,
+  setFilterState
+) => {
   const newFilterState = { ...filterState };
   newFilterState[kind] = lebenslagen;
   setFilterState(newFilterState);
