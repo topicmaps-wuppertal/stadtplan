@@ -1,5 +1,5 @@
 {
-  "name": "stadtplan",
+  "name": "@topicmaps-wuppertal/stadtplan",
   "version": "1.0.8",
   "private": true,
   "dependencies": {
